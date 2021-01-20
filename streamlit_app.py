@@ -1,43 +1,35 @@
-import warnings
-warnings.filterwarnings("ignore")
 import streamlit as st
 import datetime as dt
-from googletrans import Translator
+from ibm_watson import LanguageTranslatorV3
+from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
+apikey='9k_lDFLbTNzQD_upMVCWze72a0yZy5eFi5eOqKrT-Ghw'
+url='https://api.eu-gb.language-translator.watson.cloud.ibm.com/instances/29a391c4-ec76-4dc9-bd5e-58ebd984d31d'
 
-#import gtts'''
-#from playsound import playsound'''
-#import os3
-#import pyttsx3
-#engine = pyttsx3.init()'''
-
-trans=Translator()
 st.title('Simple Api Translator')
 now=dt.datetime.now()
 
 st.write(f"Datetime {now}")
 
 input_text=st.text_input('Enter English  Word')
-#if st.button('Listen input'):
-    #tts = gtts.gTTS(input_text, lang="en")
-#    engine.say(input_text)
-#    engine.runAndWait()
-    #playsound("hola.mp3")
-    #os.remove("hola.mp3")'''
 
 
+authenticator = IAMAuthenticator(apikey)
+lt = LanguageTranslatorV3(version='2018-05-01', authenticator=authenticator)
+lt.set_service_url(url)
 
-dict={'arabic': 'ar','bengali': 'bn','english': 'en','french': 'fr','gujarati': 'gu','hindi': 'hi','indonesian': 'id','japanese': 'ja',
-    'malayalam': 'ml',
-    'marathi': 'mr',
-    'myanmar': 'my',
-    'nepali': 'ne',
-    'punjabi': 'pa',
-    'sindhi': 'sd',
-    'tamil': 'ta',
-    'telugu': 'te',
+dict={'arabic': 'en-ar','bengali': 'en-bn','english': 'en-en','french': 'en-fr','gujarati': 'en-gu','hindi': 'en-hi','indonesian': 'en-id','japanese': 'en-ja',
+    'malayalam': 'en-ml',
+    'marathi': 'en-mr',
+    'myanmar': 'en-my',
+    'nepali': 'en-ne',
+    'sindhi': 'en-sd',
+    'punjabi': 'en-pa',
+    'tamil': 'en-ta',
+    'telugu': 'en-te',
     }
 option = st.selectbox( 'Choose Language in this menu',('arabic','bengali','french','gujarati','hindi','indonesian','japanese','malayalam','marathi','myanmar','nepali','punjabi','sindhi','tamil','telugu'))
-result=trans.translate(input_text,dest=dict[option]).text
+
+translation = lt.translate(text=input_text, model_id=dict[option]).get_result()
 #if st.button('Listen output'):
 #    tts = gtts.gTTS(result, lang=dict[option])
 #    tts.save("hola.mp3")
@@ -45,7 +37,7 @@ result=trans.translate(input_text,dest=dict[option]).text
 #    os.remove("hola.mp3")'''
 
 if st.button('Translate'):
-    st.success(result)
+    st.success(translation['translations'][0]['translation'])
     #st.write(type(dict[option]))
     #st.write('You selected:',dict[option])
 if st.button('Fork This Repo'):
