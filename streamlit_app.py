@@ -19,13 +19,14 @@ lt.set_service_url(url)
 
 dict={'hindi': 'en-hi','arabic': 'en-ar','bengali': 'en-bn','english': 'en-en','french': 'en-fr','gujarati': 'en-gu','indonesian': 'en-id','japanese': 'en-ja',
     'malayalam': 'en-ml',
-    'marathi': 'en-mr',
+
     'myanmar': 'en-my',
     'nepali': 'en-ne',
     'sindhi': 'en-sd',
     'punjabi': 'en-pa',
     'tamil': 'en-ta',
     'telugu': 'en-te',
+    'marathi': 'en-mr',
     }
 option = st.selectbox( 'Choose Language in this menu',('arabic','bengali','french','gujarati','hindi','indonesian','japanese','malayalam','marathi','myanmar','nepali','punjabi','sindhi','tamil','telugu'))
 
