@@ -4,7 +4,7 @@ from googletrans import Translator
 import gtts
 from playsound import playsound
 import os
-import gi
+
 trans=Translator()
 st.title('First streamlit project')
 now=dt.datetime.now()
