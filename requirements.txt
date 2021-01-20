@@ -1,0 +1,4 @@
+streamlit>=0.61.0
+googletrans==3.0.0
+playsound==1.2.2
+gTTS==2.2.1
