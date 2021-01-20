@@ -5,7 +5,7 @@ from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 apikey='9k_lDFLbTNzQD_upMVCWze72a0yZy5eFi5eOqKrT-Ghw'
 url='https://api.eu-gb.language-translator.watson.cloud.ibm.com/instances/29a391c4-ec76-4dc9-bd5e-58ebd984d31d'
 
-st.title('Simple Api Translator')
+st.title('Simple Api Translator  Using IBM watson ')
 now=dt.datetime.now()
 
 st.write(f"Datetime {now}")
@@ -29,7 +29,7 @@ dict={'arabic': 'en-ar','bengali': 'en-bn','english': 'en-en','french': 'en-fr',
     }
 option = st.selectbox( 'Choose Language in this menu',('arabic','bengali','french','gujarati','hindi','indonesian','japanese','malayalam','marathi','myanmar','nepali','punjabi','sindhi','tamil','telugu'))
 
-translation = lt.translate(text=input_text, model_id=dict[option]).get_result()
+
 #if st.button('Listen output'):
 #    tts = gtts.gTTS(result, lang=dict[option])
 #    tts.save("hola.mp3")
@@ -37,6 +37,7 @@ translation = lt.translate(text=input_text, model_id=dict[option]).get_result()
 #    os.remove("hola.mp3")'''
 
 if st.button('Translate'):
+    translation = lt.translate(text=input_text, model_id=dict[option]).get_result()
     st.success(translation['translations'][0]['translation'])
     #st.write(type(dict[option]))
     #st.write('You selected:',dict[option])
