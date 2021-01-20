@@ -17,7 +17,7 @@ authenticator = IAMAuthenticator(apikey)
 lt = LanguageTranslatorV3(version='2018-05-01', authenticator=authenticator)
 lt.set_service_url(url)
 
-dict={'arabic': 'en-ar','bengali': 'en-bn','english': 'en-en','french': 'en-fr','gujarati': 'en-gu','hindi': 'en-hi','indonesian': 'en-id','japanese': 'en-ja',
+dict={'hindi': 'en-hi','arabic': 'en-ar','bengali': 'en-bn','english': 'en-en','french': 'en-fr','gujarati': 'en-gu','indonesian': 'en-id','japanese': 'en-ja',
     'malayalam': 'en-ml',
     'marathi': 'en-mr',
     'myanmar': 'en-my',
